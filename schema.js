@@ -50,7 +50,8 @@ const RootQuery = new GraphQLObjectType({
     customers: {
       type: new GraphQLList(CustomerType),
       resolve(parentValue, args) {
-        return customers;
+        return axios.get('http://localhost:3000/customers/')
+          .then(res => res.data);
       }
     }
   }
